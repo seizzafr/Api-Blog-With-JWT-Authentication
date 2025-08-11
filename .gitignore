@@ -1,0 +1,14 @@
+# Ignore environment files
+.env
+
+# Ignore temporary files
+tmp/
+*.log
+
+# Ignore OS files
+.DS_Store
+
+# Ignore Go build cache
+bin/
+*.exe
+*.out
