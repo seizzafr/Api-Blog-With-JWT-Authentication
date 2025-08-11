@@ -1,4 +1,3 @@
-Oke, ini isi **README.md**-nya saja, siap kamu copy-paste ke file `README.md` di repo-mu.
 
 ```md
 # API-BLOG (JWT Authentication)
