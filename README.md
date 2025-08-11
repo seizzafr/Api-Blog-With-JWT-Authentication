@@ -94,6 +94,3 @@ go run ./cmd/main.go
 MIT © 2025
 Sheiza Fakhru Rasyid
 ```
-
-Kamu mau aku tambahin sekalian?
-```
