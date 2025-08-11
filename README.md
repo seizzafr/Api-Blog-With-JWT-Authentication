@@ -41,8 +41,8 @@ RESTful API dibangun dengan **Golang** yang menerapkan **JWT (JSON Web Token)** 
 ## Setup
 1. Clone repo:
 ```bash
-git clone git@github.com:username/api-blo.git
-cd api-blog
+git clone https://github.com/seizzafr/Api-Blog-With-JWT-Authentication.git
+cd Api-Blog-With-JWT-Authentication 
 ````
 
 2. Copy `.env.example` → `.env` dan isi variabelnya:
