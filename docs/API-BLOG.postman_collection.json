@@ -1,0 +1,1169 @@
+{
+	"info": {
+		"_postman_id": "6b4c5edd-ac73-4940-a0ec-ef7e7e8e45ee",
+		"name": "API-BLOG",
+		"description": "# **API Documentation – API-BLOG (JWT Authentication)**\n\n## **Base URL**\n\n```\n{{base_url}}/api\n\n ```\n\n## **Authentication**\n\n- Endpoint tertentu **membutuhkan JWT Token** pada request header.\n    \n- Format header:\n    \n\n```\nAuthorization: Bearer <token>\n\n ```\n\n### **1\\. Authentication**\n\n#### **Register**\n\n- **Method:** `POST`\n    \n- **URL:** `/register`\n    \n- **Body:**\n    \n\n``` json\n{\n  \"username\": \"Dimas Prasetya\",\n  \"email\": \"dimas56901@gmail.com\",\n  \"password\": \"eja123\"\n}\n\n ```\n\n- **Response (200):**\n    \n\n``` json\n{{\n    \"data\": {\n        \"id\": 424,\n        \"username\": \"Dimas Prasetya\",\n        \"email\": \"dimas56901@gmail.com\",\n        \"password\": \"$2a$10$k3w3R3eBGuIENcUgHPZ1OeviP7SAl.xHXfJvInTfParLlSZni2yty\",\n        \"created_at\": \"2025-08-12T04:02:35.507+07:00\",\n        \"updated_at\": \"2025-08-12T04:02:35.507+07:00\"\n    },\n    \"message\": \"Anda Berhasil Membuat Account\",\n    \"status\": 200\n}\n\n ```\n\n#### **Login**\n\n- **Method:** `POST`\n    \n- **URL:** `/login`\n    \n- **Body:**\n    \n\n``` json\n{\n  \"email\": \"dimas56@gmail.com\",\n  \"password\": \"eja123\"\n}\n\n ```\n\n- **Response(200):**\n    \n\n``` json\n{\n    \"message\": \"Anda Berhasil Login\",\n    \"status\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ5NDc2ODZ9.sRsmkPpy4FitHrIy76Nb5PE7_QMmwM_nlvW23g9Kvj8\",\n    \"user\": {\n        \"email\": \"dimas56@gmail.com\",\n        \"id\": 417,\n        \"username\": \"Dimas Prasetya\"\n    }\n}\n\n ```\n\n#### **Logout**\n\n- **Method:** `POST`\n    \n- **URL:** `/logout`\n    \n- **Headers:**\n    \n\n```\nAuthorization: Bearer <token>\n\n ```\n\n- **Response(200).**\n    \n\n``` json\n{\n    \"message\": \"Anda berhasil logout\",\n    \"status\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ5NDc2ODZ9.sRsmkPpy4FitHrIy76Nb5PE7_QMmwM_nlvW23g9Kvj8\"\n}\n\n ```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42360013"
+	},
+	"item": [
+		{
+			"name": "JWT-AUTH",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"sheiza Faakhru rasyid\",\n\t\"email\": \"seizzafr@gmail.com\",\n    \"password\":\"eja123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJlbWFpbCI6ImRpbWFzMjQxQGdtYWlsLmNvbSIsImV4cCI6MTc1NDMyODk5OX0.pD062PfIbYyEAf2Y9Pf6fUm8AfbxdTK0eoC4_CP_WSY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"logout"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"dimas56@gmail.com\",\n    \"password\":\"eja123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Kumpulan Endpoint yang digunakan untuk user membuat account,login ke sistem dan mendapatkan token,lalu keluar dari sistem(logout) dengan memblacklist token.\n\n### **Base URL**\n\n{{base_url}}/api\n\n### **Available Endpoints**\n\n| Method | Endpoint | Deskripsi |\n| --- | --- | --- |\n| POST | `{{base_url}}/api/login` | Berguna untuk masuk ke sistem |\n| POST | `{{base_url}}/api/register` | Berguna untuk Membuat account pada sistem |\n| POST | `{{base_url}}/api/logout` | Berguna untuk keluar dari sistem |\n\n### **Request Register**\n\nFormat:\n\n``` json\n{\n    \"username\":\"Dimas Prasetya\",\n    \"email\": \"dimas241@gmail.com\",\n    \"password\":\"eja123\"\n}\n\n ```\n\n### **Response Register**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 417,\n        \"username\": \"Dimas Prasetya\",\n        \"email\": \"dimas56@gmail.com\",\n        \"password\": \"$2a$10$F9Iy.81lpQT8SiWfNH280OWpzDTisdEHbiiFDJlr1cAoUIqobB2hC\",\n        \"created_at\": \"2025-08-10T08:39:52.097+07:00\",\n        \"updated_at\": \"2025-08-10T08:39:52.097+07:00\"\n    },\n    \"message\": \"Anda Berhasil Membuat Account\",\n    \"status\": 200\n}\n\n ```\n\n### **Request Login**\n\nFormat:\n\n``` json\n{\n    \"email\": \"dimas56@gmail.com\",\n    \"password\":\"eja123\"\n}\n\n ```\n\n### **Response Login**\n\nFormat:\n\n``` json\n{\n    \"message\": \"Anda Berhasil Login\",\n    \"status\": true,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ3OTM3OTB9.k4UFZECWtAr2vHn6hHdzRn26ktSNOzIuR6hbicaRZWM\",\n    \"user\": {\n        \"email\": \"dimas56@gmail.com\",\n        \"id\": 417,\n        \"username\": \"Dimas Prasetya\"\n    }\n}\n\n ```\n\n### **Request Logout**\n\nFormat:\n\n``` json\n{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ3OTM3OTB9.k4UFZECWtAr2vHn6hHdzRn26ktSNOzIuR6hbicaRZWM\",\n}\n\n ```\n\n### **Response Logout**\n\nFormat:\n\n``` json\n{\n    \"data\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ3OTM3OTB9.k4UFZECWtAr2vHn6hHdzRn26ktSNOzIuR6hbicaRZWM\",\n    \"message\": \"Anda berhasil logout\",\n    \"status\": true\n}\n\n ```"
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJlbWFpbCI6ImRpbWFzMjQxQGdtYWlsLmNvbSIsImV4cCI6MTc1NDY5NzE4MH0.FCS6mqo4aeQHSo1dsYl83gvPV-Z8TsV-v5F1A6qEsCU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/category/388",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category",
+								"388"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJlbWFpbCI6ImRpbWFzMjQxQGdtYWlsLmNvbSIsImV4cCI6MTc1NDc5MTY2OX0.YDMqE_U_IXF0oR1-PxaqsPFnW8GDUYaGi4Imjvni4gE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"desc\":\"makanan\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/category",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/category",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "categoryGetByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJlbWFpbCI6ImRpbWFzMjQxQGdtYWlsLmNvbSIsImV4cCI6MTc1NDc5MTY2OX0.YDMqE_U_IXF0oR1-PxaqsPFnW8GDUYaGi4Imjvni4gE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/category/6",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJlbWFpbCI6ImRpbWFzMjQxQGdtYWlsLmNvbSIsImV4cCI6MTc1NDU3OTYxMX0.tizm3hsPKGFUco33SAzQILGJwc1fMmDrHu_fwwXDz2E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"makanan\",\n    \"description\":\"makanan terenak di dunia\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/category/388",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"category",
+								"388"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Kumpulan endpoint untuk mengelola data kategori dalam sistem. API ini digunakan untuk operasi CRUD pada entitas kategori, yang digunakan untuk mengelompokkan data posts.\n\n### **Base URL**\n\n{{base_url}}/api\n\n### **Authentication**\n\nSemua endpoint memerlukan **Bearer Token** (JWT) pada header `Authorization`.\n\nFormat:\n\n``` json\nAuthorization Bearer Token\n\n ```\n\n### **Available Endpoints**\n\n| Method | Endpoint | Deskripsi |\n| --- | --- | --- |\n| GET | `{{base_url}}/api/category` | Menampilkan daftar data category. Mendukung pagination & filter. |\n| GET | `{{base_url}}/api/category/{id}` | Menampilkan detail data tertentu. |\n| POST | `{{base_url}}/api/category` | Menambahkan data baru. |\n| PUT | `{{base_url}}/api/category/{id}` | Memperbarui data yang sudah ada. |\n| DELETE | `{{base_url}}/api/category/{id}` | Menghapus data. |\n\n### **Response Category Method GET**\n\nFormat:\n\n``` json\n{\n    \"status\": 200,\n    \"message\": \"Data kategori berhasil diambil\",\n    \"data\": {\n        \"data\": [\n            {\n                \"categoryid\": 8,\n                \"name\": \"Lifestyle\",\n                \"Slug\": \"lifestyle\"\n            }\n\n ```\n\n### **Request Category Method POST**\n\nFormat:\n\n``` json\n{\n    \"name\":\"makanan\"\n}\n\n ```\n\n### **Response Category Method POST**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"categoryid\": 388,\n        \"name\": \"makanan\",\n        \"Slug\": \"makanan\"\n    },\n    \"message\": \"Data berhasil disimpan\",\n    \"status\": 200\n}\n\n ```\n\n### **Request Category Method PUT**\n\nFormat:\n\n``` json\n{\n    \"name\":\"minuman Panther\"\n}\n\n ```\n\n### **Response Category Method PUT**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"categoryid\": 388,\n        \"name\": \"minuman Panther\",\n        \"Slug\": \"minuman-panther\"\n    },\n    \"message\": \"Data berhasil diupdate\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Category Method DELETE**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"categoryid\": 388,\n        \"name\": \"minuman Panther\",\n        \"Slug\": \"minuman-panther\"\n    },\n    \"message\": \"Data berhasil dihapus\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Unvalidated Input**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"name\": \"\"\n    },\n    \"error\": \"Key: 'CategoryRequest.Name' Error:Field validation for 'Name' failed on the 'required' tag\",\n    \"message\": \"Validasi Input Unvalidated\",\n    \"status\": false\n}\n\n ```\n\n### **Response Data Not Found**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"categoryid\": 0,\n        \"name\": \"\",\n        \"Slug\": \"\"\n    },\n    \"error\": \"Data not found\",\n    \"status\": false\n}\n\n ```",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ4MTc1Mjl9.95d1uXAyklGbcsFdbIySd64kCgx4V8Tywq5ExaUTokc",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJlbWFpbCI6ImRpbWFzMjQxQGdtYWlsLmNvbSIsImV4cCI6MTc1NDY5NzE4MH0.FCS6mqo4aeQHSo1dsYl83gvPV-Z8TsV-v5F1A6qEsCU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Golang adalah bahasa pemrograman yang cepat dan sederhana.....",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Golang Bahasa Yabg Menyenangkan",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/home/mr-x/Pictures/Screenshot_2025-08-04_23_59_00.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/posts/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "posts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJlbWFpbCI6ImRpbWFzMjQxQGdtYWlsLmNvbSIsImV4cCI6MTc1NDY5NzE4MH0.FCS6mqo4aeQHSo1dsYl83gvPV-Z8TsV-v5F1A6qEsCU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Golang adalah bahasa pemrograman yang cepat dan sederhana.....",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Golang Bahasa Yabg Menyenangkan",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/home/mr-x/Pictures/Screenshot_2025-08-04_23_59_00.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/posts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postsGetByID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJlbWFpbCI6ImRpbWFzMjQxQGdtYWlsLmNvbSIsImV4cCI6MTc1NDY5NzE4MH0.FCS6mqo4aeQHSo1dsYl83gvPV-Z8TsV-v5F1A6qEsCU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Golang adalah bahasa pemrograman yang cepat dan sederhana.....",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "Golang Bahasa Yabg Menyenangkan",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/home/mr-x/Pictures/Screenshot_2025-08-04_23_59_00.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/posts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ4NjE4MTJ9.WRK4TXVHzdR_e_2IFCG8QQey8jjsJk4hl06fELto6FA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category_id\":37,\n    \"title\":\"baymax\",\n    \"content\":\"Teknologi masa depan dibidang medis\",\n     \"user_id\":10,\n    \"thumbnail\":\"baymax.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/posts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2LCJlbWFpbCI6ImRpbWFzMjQxQGdtYWlsLmNvbSIsImV4cCI6MTc1NDU3OTYxMX0.tizm3hsPKGFUco33SAzQILGJwc1fMmDrHu_fwwXDz2E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/posts/6",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"posts",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Kumpulan endpoint untuk mengelola data posts dalam sistem. API ini digunakan untuk operasi CRUD pada entitas posts.\n\n### **Base URL**\n\n[http://127.0.0.1:8080](http://127.0.0.1:8080)  \n/api\n\n### **Authentication**\n\nSemua endpoint memerlukan **Bearer Token** (JWT) pada header `Authorization`.\n\nFormat:\n\n``` json\nAuthorization Bearer Token\n\n ```\n\n### **Available Endpoints**\n\n| Method | Endpoint | Deskripsi |\n| --- | --- | --- |\n| DELETE | {{base_url}}/api/posts/{id} | Menghapus data pada entitas posts berdasarkan id. |\n| PUT | {{base_url}}/api/posts/{id} | Mengubah data pada entitas posts berdasarkan id. |\n| POST | {{base_url}}/api/posts | Menambah data pada entitas posts. |\n| GET | {{base_url}}/api/posts/{id} | Nemgambil data pada entitas posts berdasarkan id. |\n| GET | `{{base_url}}/api/posts` | Menampilkan daftar data category. Mendukung pagination & filter. |\n\n### **Response Posts Method GET**\n\nFormat:\n\n``` json\n{\n    \"status\": 200,\n    \"message\": \"Data Posts berhasil diambil\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 37,\n                \"category_id\": 90,\n                \"title\": \"Consequatur accusantium voluptatem aut sit perferendis.\",\n                \"content\": \"Perferendis accusantium voluptatem sit aut consequatur. Accusantium voluptatem aut consequatur perferendis sit. Voluptatem sit consequatur aut accusantium perferendis. Sit voluptatem consequatur accusantium aut perferendis. Aut voluptatem sit accusantium perferendis consequatur.\",\n                \"thumbnail\": \"https://kQAOVXV.biz/\",\n                \"user_id\": 105,\n                \"created_at\": \"2025-08-08T07:00:48.479+07:00\",\n                \"updated_at\": \"2025-08-08T07:00:48.479+07:00\",\n                \"Slug\": \"consequatur-accusantium-voluptatem-aut-sit-perferendis\",\n                \"Category\": {\n                    \"categoryid\": 90,\n                    \"name\": \"Finance\",\n                    \"Slug\": \"finance-18\"\n                },\n                \"Users\": {\n                    \"id\": 105,\n                    \"username\": \"LWfAJyt\",\n                    \"email\": \"HjJsFsl@WNiJqCx.ru\",\n                    \"password\": \"$2a$10$ccBfPdvkopixI2.TDdB.Ee/fflY0Rx1PeY9kIuV2Ea7UmT5rlS1gW\",\n                    \"created_at\": \"2025-08-08T06:43:51.525+07:00\",\n                    \"updated_at\": \"2025-08-08T06:43:51.525+07:00\"\n                }\n            },\n\n ```\n\n### **Response PostsByID Method GET**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 37,\n        \"category_id\": 90,\n        \"title\": \"Consequatur accusantium voluptatem aut sit perferendis.\",\n        \"content\": \"Perferendis accusantium voluptatem sit aut consequatur. Accusantium voluptatem aut consequatur perferendis sit. Voluptatem sit consequatur aut accusantium perferendis. Sit voluptatem consequatur accusantium aut perferendis. Aut voluptatem sit accusantium perferendis consequatur.\",\n        \"thumbnail\": \"https://kQAOVXV.biz/\",\n        \"user_id\": 105,\n        \"created_at\": \"2025-08-08T07:00:48.479+07:00\",\n        \"updated_at\": \"2025-08-08T07:00:48.479+07:00\",\n        \"Slug\": \"consequatur-accusantium-voluptatem-aut-sit-perferendis\",\n        \"Category\": {\n            \"categoryid\": 90,\n            \"name\": \"Finance\",\n            \"Slug\": \"finance-18\"\n        },\n        \"Users\": {\n            \"id\": 105,\n            \"username\": \"LWfAJyt\",\n            \"email\": \"HjJsFsl@WNiJqCx.ru\",\n            \"password\": \"$2a$10$ccBfPdvkopixI2.TDdB.Ee/fflY0Rx1PeY9kIuV2Ea7UmT5rlS1gW\",\n            \"created_at\": \"2025-08-08T06:43:51.525+07:00\",\n            \"updated_at\": \"2025-08-08T06:43:51.525+07:00\"\n        }\n    },\n    \"message\": \"Data berhasil ditampilkan\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Posts Method POST Multipart/form-data**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 98,\n        \"category_id\": 37,\n        \"title\": \"Baymax Robotics\",\n        \"content\": \"Teknologi masa depan di bidang medis\",\n        \"thumbnail\": \"/uploads/1754858719092615128_Screenshot_2025-08-09_06_01_40.png\",\n        \"user_id\": 10,\n        \"created_at\": \"2025-08-11T03:45:19.093+07:00\",\n        \"updated_at\": \"2025-08-11T03:45:19.093+07:00\",\n        \"Slug\": \"baymax-robotics\",\n        \"Category\": {\n            \"categoryid\": 37,\n            \"name\": \"Technology\",\n            \"Slug\": \"technology-3\"\n        },\n        \"Users\": {\n            \"id\": 10,\n            \"username\": \"qQOtsVu\",\n            \"email\": \"RRKWuob@MUcECUb.biz\",\n            \"password\": \"$2a$10$vR8k7inlXnchY9aqFeqBPeVu1G0t0kXNsUl0DFKDZ7wvIy0Ewe40y\",\n            \"created_at\": \"2025-08-08T06:42:16.762+07:00\",\n            \"updated_at\": \"2025-08-08T06:42:16.762+07:00\"\n        }\n    },\n    \"message\": \"Data berhasil disimpan\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Posts Method PUT Multipart/form-data**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 99,\n        \"category_id\": 10,\n        \"title\": \"eja\",\n        \"content\": \"anak ganteng\",\n        \"thumbnail\": \"/uploads/1754859646192184752_Screenshot_2025-07-28_17_29_13.png\",\n        \"user_id\": 10,\n        \"created_at\": \"2025-08-11T03:58:07.973+07:00\",\n        \"updated_at\": \"2025-08-11T04:00:46.193+07:00\",\n        \"Slug\": \"eja-1\",\n        \"Category\": {\n            \"categoryid\": 10,\n            \"name\": \"Health\",\n            \"Slug\": \"health\"\n        },\n        \"Users\": {\n            \"id\": 10,\n            \"username\": \"qQOtsVu\",\n            \"email\": \"RRKWuob@MUcECUb.biz\",\n            \"password\": \"$2a$10$vR8k7inlXnchY9aqFeqBPeVu1G0t0kXNsUl0DFKDZ7wvIy0Ewe40y\",\n            \"created_at\": \"2025-08-08T06:42:16.762+07:00\",\n            \"updated_at\": \"2025-08-08T06:42:16.762+07:00\"\n        }\n    },\n    \"message\": \"Data berhasil diupdate\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Posts Method DELETE**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 99,\n        \"category_id\": 10,\n        \"title\": \"eja\",\n        \"content\": \"anak ganteng\",\n        \"thumbnail\": \"/uploads/1754859646192184752_Screenshot_2025-07-28_17_29_13.png\",\n        \"user_id\": 10,\n        \"created_at\": \"2025-08-11T03:58:07.973+07:00\",\n        \"updated_at\": \"2025-08-11T04:00:46.193+07:00\",\n        \"Slug\": \"eja-1\",\n        \"Category\": {\n            \"categoryid\": 10,\n            \"name\": \"Health\",\n            \"Slug\": \"health\"\n        },\n        \"Users\": {\n            \"id\": 10,\n            \"username\": \"qQOtsVu\",\n            \"email\": \"RRKWuob@MUcECUb.biz\",\n            \"password\": \"$2a$10$vR8k7inlXnchY9aqFeqBPeVu1G0t0kXNsUl0DFKDZ7wvIy0Ewe40y\",\n            \"created_at\": \"2025-08-08T06:42:16.762+07:00\",\n            \"updated_at\": \"2025-08-08T06:42:16.762+07:00\"\n        }\n    },\n    \"message\": \"Data berhasil dihapus\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Posts Data Not Found**\n\nFormat:\n\n``` json\n{\n    \"error\": \"Data not found\",\n    \"status\": false\n}\n\n ```",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ4MjE4MDR9.f3x7Nr8reqRU0msdCk7R4W1c-F0GXF4Zix1jPPhW8Ms",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "tags",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "tagsGetByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/tags/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tags",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/tags",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "tags",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/tags",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Kumpulan endpoint untuk mengelola data kategori dalam sistem. API ini digunakan untuk operasi CRUD pada entitas tags, yang digunakan untuk mengelompokkan data posts.\n\n### **Base URL**\n\n{{base_url}}/api\n\n### **Authentication**\n\nSemua endpoint memerlukan **Bearer Token** (JWT) pada header `Authorization`.\n\nFormat:\n\n``` json\nAuthorization Bearer Token\n\n ```\n\n### **Available Endpoints**\n\n| Method | Endpoint | Deskripsi |\n| --- | --- | --- |\n| DELETE | `{{base_url}}/api/tags/{id}` | Berguna untuk menghapus data pada entitas tags berdasarkan id. |\n| PUT | `{{base_url}}/api/tags/{id}` | Berguna untuk mengubah data pada entitas tags berdasarkan id. |\n| POST | `{{base_url}}/api/tags` | Berguna untuk menambahkan data pada entitas tags. |\n| GET | `{{base_url}}/api/tags/{id}` | Menampilkan data tags berdasarkan id. |\n| GET | `{{base_url}}/api/tags` | Menampilkan daftar data tags. Mendukung pagination & filter. |\n\n### **Response Tags Method GET**\n\nFormat:\n\n``` json\n{\n    \"status\": 200,\n    \"message\": \"Data tag berhasil diambil\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"name\": \"Kuliner\",\n                \"Slug\": \"kuliner\"\n            }\n        ],\n        \"total\": 1,\n        \"total_pages\": 1,\n        \"page\": 1,\n        \"limit\": 10\n    }\n}\n\n ```\n\n### **Response TagsByID Method GET**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"Kuliner\",\n        \"Slug\": \"kuliner\"\n    },\n    \"message\": \"Data berhasil ditampilkan\",\n    \"status\": 200\n}\n\n ```\n\n### **Request Tags Method POST**\n\nFormat:\n\n``` json\n{\n    \"name\":\"Minuman\"\n}\n\n ```\n\n### **Response Tags Method POST**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 2,\n        \"name\": \"Minuman\",\n        \"Slug\": \"minuman\"\n    },\n    \"message\": \"Data berhasil disimpan\",\n    \"status\": 200\n}\n\n ```\n\n### **Request Tags Method PUT**\n\nFormat:\n\n``` json\n{\n    \"name\":\"depok\"\n}\n\n ```\n\n### **Response Tags Method PUT**\n\nFormat:\n\n``` json\n{{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"depok\",\n        \"Slug\": \"depok\"\n    },\n    \"message\": \"Data berhasil diupdate\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Tags Method DELETE**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"depok\",\n        \"Slug\": \"depok\"\n    },\n    \"message\": \"Data berhasil dihapus\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Tags Not Found**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 0,\n        \"name\": \"\",\n        \"Slug\": \"\"\n    },\n    \"error\": \"Data not found\",\n    \"status\": false\n}\n\n ```\n\n### **Response Tags Unvalidated Input**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"name\": \"\"\n    },\n    \"error\": \"Key: 'TagsRequest.Name' Error:Field validation for 'Name' failed on the 'required' tag\",\n    \"message\": \"Validasi Input Unvalidated\",\n    \"status\": false\n}\n\n ```",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ4MTc1Mjl9.95d1uXAyklGbcsFdbIySd64kCgx4V8Tywq5ExaUTokc",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "post-tag",
+			"item": [
+				{
+					"name": "post-tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/post-tag",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"post-tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post-tagGetByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/post-tag",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"post-tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post-tag",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/post-tag",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"post-tag"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Kumpulan endpoint ini berguna untuk mengelola **relasi antara post dan tag** di dalam sistem.\n\nFitur ini biasanya digunakan pada aplikasi blog, artikel, atau platform yang memiliki sistem kategori/tag untuk mempermudah pengelompokan konten.\n\n### **Base URL**\n\n[http://127.0.0.1:8080](http://127.0.0.1:8080)  \n/api\n\n### **Authentication**\n\nSemua endpoint memerlukan **Bearer Token** (JWT) pada header `Authorization`.\n\nFormat:\n\n``` json\nAuthorization Bearer Token\n\n ```\n\n### **Available Endpoints**\n\n| Method | Endpoint | Deskripsi |\n| --- | --- | --- |\n| POST | {{base_url}}/api/post-tag | Menambahkan data yang ada pada entitas post-tag. |\n| GET | {{base_url}}/api/post-tag | Menampilkan semua data yang ada di entitas post-tag. |\n| GET | {{base_url}}/api/post-tag/{id} | Menampilkan data yagn ada di entitas post-tag berdasarkan id. |\n\n### **Response Post-Tag Method GET**\n\nFormat:\n\n``` json\n{\n    \"status\": 200,\n    \"message\": \"Data PostTag berhasil diambil\",\n    \"data\": {\n        \"data\": [\n            {\n                \"post_id\": 90,\n                \"tag_id\": 2,\n                \"Posts\": {\n                    \"id\": 90,\n                    \"category_id\": 251,\n                    \"title\": \"Accusantium sit voluptatem aut consequatur perferendis.\",\n                    \"content\": \"Aut sit accusantium consequatur voluptatem perferendis.\",\n                    \"thumbnail\": \"http://CBZJqOH.ru/dpyJQDF.html\",\n                    \"user_id\": 80,\n                    \"created_at\": \"2025-08-09T05:39:10.99+07:00\",\n                    \"updated_at\": \"2025-08-09T05:39:10.99+07:00\",\n                    \"Slug\": \"accusantium-sit-voluptatem-aut-consequatur-perferendis\",\n                    \"Category\": {\n                        \"categoryid\": 251,\n                        \"name\": \"Lifestyle\",\n                        \"Slug\": \"lifestyle-63\"\n                    },\n                    \"Users\": {\n                        \"id\": 80,\n                        \"username\": \"aOkvrqs\",\n                        \"email\": \"YuctimB@rWLZYPm.com\",\n                        \"password\": \"$2a$10$ae3WTckkWhmR1bW0fuFyH.1LX2Wt.Yl9tavjgWdz/JzPeX1ovDiVW\",\n                        \"created_at\": \"2025-08-08T06:43:44.391+07:00\",\n                        \"updated_at\": \"2025-08-08T06:43:44.391+07:00\"\n                    }\n                },\n                \"Tags\": {\n                    \"id\": 2,\n                    \"name\": \"Minuman\",\n                    \"Slug\": \"minuman\"\n                }\n            }\n        ],\n        \"total\": 1,\n        \"total_pages\": 1,\n        \"page\": 1,\n        \"limit\": 10\n    }\n}\n\n ```\n\n### **Response Post-TagByID Method GET**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"post_id\": 90,\n        \"tag_id\": 2,\n        \"Posts\": {\n            \"id\": 90,\n            \"category_id\": 251,\n            \"title\": \"Accusantium sit voluptatem aut consequatur perferendis.\",\n            \"content\": \"Aut sit accusantium consequatur voluptatem perferendis.\",\n            \"thumbnail\": \"http://CBZJqOH.ru/dpyJQDF.html\",\n            \"user_id\": 80,\n            \"created_at\": \"2025-08-09T05:39:10.99+07:00\",\n            \"updated_at\": \"2025-08-09T05:39:10.99+07:00\",\n            \"Slug\": \"accusantium-sit-voluptatem-aut-consequatur-perferendis\",\n            \"Category\": {\n                \"categoryid\": 251,\n                \"name\": \"Lifestyle\",\n                \"Slug\": \"lifestyle-63\"\n            },\n            \"Users\": {\n                \"id\": 80,\n                \"username\": \"aOkvrqs\",\n                \"email\": \"YuctimB@rWLZYPm.com\",\n                \"password\": \"$2a$10$ae3WTckkWhmR1bW0fuFyH.1LX2Wt.Yl9tavjgWdz/JzPeX1ovDiVW\",\n                \"created_at\": \"2025-08-08T06:43:44.391+07:00\",\n                \"updated_at\": \"2025-08-08T06:43:44.391+07:00\"\n            }\n        },\n        \"Tags\": {\n            \"id\": 2,\n            \"name\": \"Minuman\",\n            \"Slug\": \"minuman\"\n        }\n    },\n    \"message\": \"Data berhasil ditampilkan\",\n    \"status\": 200\n}\n\n ```\n\n### **Request Post-Tag Method POST**\n\nFormat:\n\n``` json\n{\n    \"post_id\":90,\n    \"tag_id\":2\n}\n\n ```\n\n### **Response Post-Tag Method POST**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"post_id\": 90,\n        \"tag_id\": 2,\n        \"Posts\": {\n            \"id\": 90,\n            \"category_id\": 251,\n            \"title\": \"Accusantium sit voluptatem aut consequatur perferendis.\",\n            \"content\": \"Aut sit accusantium consequatur voluptatem perferendis.\",\n            \"thumbnail\": \"http://CBZJqOH.ru/dpyJQDF.html\",\n            \"user_id\": 80,\n            \"created_at\": \"2025-08-09T05:39:10.99+07:00\",\n            \"updated_at\": \"2025-08-09T05:39:10.99+07:00\",\n            \"Slug\": \"accusantium-sit-voluptatem-aut-consequatur-perferendis\",\n            \"Category\": {\n                \"categoryid\": 251,\n                \"name\": \"Lifestyle\",\n                \"Slug\": \"lifestyle-63\"\n            },\n            \"Users\": {\n                \"id\": 80,\n                \"username\": \"aOkvrqs\",\n                \"email\": \"YuctimB@rWLZYPm.com\",\n                \"password\": \"$2a$10$ae3WTckkWhmR1bW0fuFyH.1LX2Wt.Yl9tavjgWdz/JzPeX1ovDiVW\",\n                \"created_at\": \"2025-08-08T06:43:44.391+07:00\",\n                \"updated_at\": \"2025-08-08T06:43:44.391+07:00\"\n            }\n        },\n        \"Tags\": {\n            \"id\": 2,\n            \"name\": \"Minuman\",\n            \"Slug\": \"minuman\"\n        }\n    },\n    \"message\": \"Data berhasil disimpan\",\n    \"status\": 200\n}\n\n ```"
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/info?id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"info"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "usersGetByID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/users/55",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"55"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Dimas Prasetya\"\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/users/55",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"55"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/users/54",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"54"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			],
+			"description": "Kumpulan endpoint untuk mengelola data users dalam sistem. API ini digunakan untuk operasi CRUD pada entitas users,yang digunakan untuk mengelola data user.\n\n### **Base URL**\n\n{{base_url}}/api\n\n### **Authentication**\n\nSemua endpoint memerlukan **Bearer Token** (JWT) pada header `Authorization`.\n\nFormat:\n\n``` json\nAuthorization Bearer Token\n\n ```\n\n### **Available Endpoints**\n\n| Method | Endpoint | Deskripsi |\n| --- | --- | --- |\n| DELETE | `{{base_url}}/api/users/{id}` | Endpoint ini berguna untuk menghapus data user |\n| PUT | `{{base_url}}/api/users/{id}` | Endpoint ini berguna untuk mengubah data user |\n| GET | `{{base_url}}/api/users` | Endpoint ini berguna untuk Mengambil data user |\n| GET | `{{base_url}}/api/users/{id}` | Endpoint ini berguna untuk Mengambil data user berdasarkan id |\n\n### **Response Users Method GET**\n\nFormat:\n\n``` json\n{\n    \"status\": 200,\n    \"message\": \"Data Users berhasil diambil\",\n    \"data\": {\n        \"data\": [\n            {\n                \"id\": 1,\n                \"username\": \"Sheiza Fakhru Rasyid\",\n                \"email\": \"sheiza@example.com\",\n                \"password\": \"\",\n                \"created_at\": \"2025-07-22T02:54:12.685+07:00\",\n                \"updated_at\": \"2025-07-22T02:54:12.685+07:00\"\n            }\n\n ```\n\n### **Response Users Method GETByID**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 54,\n        \"username\": \"BBXrAny\",\n        \"email\": \"CgdHvMI@uSUmdJd.org\",\n        \"password\": \"$2a$10$ZNIjV9toZtAwQrmazcakOuQbf4LffAxpgWpyu3.6qQkKvZjS5Out.\",\n        \"created_at\": \"2025-08-08T06:42:26.652+07:00\",\n        \"updated_at\": \"2025-08-08T06:42:26.652+07:00\"\n    },\n    \"message\": \"Data berhasil ditampilkan\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Users Method PUT**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 55,\n        \"username\": \"Dimas Prasetya\",\n        \"email\": \"dimas56900012545@gmail.com\",\n        \"password\": \"$2a$10$WGvTiJjf83MGZGh0Gp.3pOP/nuxg425LRxT7c9XLcE4GQV4gtsogy\",\n        \"created_at\": \"2025-08-08T06:42:26.707+07:00\",\n        \"updated_at\": \"2025-08-10T11:23:41.786+07:00\"\n    },\n    \"message\": \"Data user berhasil diupdate\",\n    \"status\": true\n}\n\n ```\n\n### **Response Users Method DELETE**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 54,\n        \"username\": \"BBXrAny\",\n        \"email\": \"CgdHvMI@uSUmdJd.org\",\n        \"password\": \"$2a$10$ZNIjV9toZtAwQrmazcakOuQbf4LffAxpgWpyu3.6qQkKvZjS5Out.\",\n        \"created_at\": \"2025-08-08T06:42:26.652+07:00\",\n        \"updated_at\": \"2025-08-08T06:42:26.652+07:00\"\n    },\n    \"message\": \"Data berhasil dihapus\",\n    \"status\": 200\n}\n\n ```\n\n### **Response Users Not Found**\n\nFormat:\n\n``` json\n{\n    \"data\": {\n        \"id\": 0,\n        \"username\": \"\",\n        \"email\": \"\",\n        \"password\": \"\",\n        \"created_at\": \"0001-01-01T00:00:00Z\",\n        \"updated_at\": \"0001-01-01T00:00:00Z\"\n    },\n    \"error\": \"User not found\",\n    \"status\": false\n}\n\n ```\n\n### **Response Email Already Use**\n\nFormat:\n\n``` json\n{\n    \"errors\": {\n        \"Email Sudah Digunakan\": \"email\"\n    },\n    \"message\": \"email\",\n    \"status\": false\n}\n\n ```\n\n### **Response Unvalidated Input**\n\nFormat:\n\n``` json\n{\n    \"error\": \"Key: 'UsersRequest.Username' Error:Field validation for 'Username' failed on the 'required' tag\\nKey: 'UsersRequest.Email' Error:Field validation for 'Email' failed on the 'required' tag\\nKey: 'UsersRequest.Password' Error:Field validation for 'Password' failed on the 'required' tag\",\n    \"message\": \"Validasi input unvalidated\",\n    \"status\": false\n}\n\n ```",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MTcsImVtYWlsIjoiZGltYXM1NkBnbWFpbC5jb20iLCJleHAiOjE3NTQ4MDIxMjR9.a8k2B6DagoOTB74DGkqxajtooo4lWmm9EN667CIOAV4",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
