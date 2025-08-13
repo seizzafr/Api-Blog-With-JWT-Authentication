@@ -81,7 +81,7 @@ air
 Atau:
 
 ```bash
-go run ./cmd/main.go
+go run .
 ```
 
 ## Dokumentasi
